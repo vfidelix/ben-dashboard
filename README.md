@@ -1,6 +1,6 @@
 # Benjamin Predictions
 
-A zero-cost, static live dashboard for Benjamin's prediction pool.
+A zero-cost, static live dashboard for Benjamin's prediction pool, published with GitHub Pages.
 
 ## Live scoring
 
