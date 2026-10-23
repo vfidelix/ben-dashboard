@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#264432">
+  <title>Benjamin Predictions · Palpites para o Ben</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Nunito+Sans:wght@500;600;700;800;900&display=swap');
+    :root{--ink:#173422;--pine:#264432;--moss:#516c49;--sage:#cbd6b9;--paper:#fff9ea;--sand:#f1e5c8;--orange:#c85c2b;--gold:#f3b844;--line:#d8c9a7;--muted:#677466}
+    *{box-sizing:border-box} body{margin:0;color:var(--ink);font-family:"Nunito Sans",sans-serif;background:radial-gradient(circle at 12% 8%,#fffdf6 0 12%,transparent 31%),radial-gradient(circle at 92% 27%,#ead8b6 0 2%,transparent 22%),var(--sand)}
+    .wrap{max-width:1180px;margin:auto;padding:28px 20px 52px}.hero{position:relative;overflow:hidden;border:1px solid #decda8;border-radius:28px;padding:48px 44px 40px;background:linear-gradient(160deg,#fffdf7 0%,#f8efd9 100%);box-shadow:0 17px 45px #6a55351d}.hero:before{content:"";position:absolute;inset:auto -10% -68px;height:180px;background:radial-gradient(ellipse at 8% 100%,#35543c 0 16%,transparent 16.5%),radial-gradient(ellipse at 25% 100%,#52704e 0 12%,transparent 12.5%),radial-gradient(ellipse at 77% 100%,#35543c 0 19%,transparent 19.5%),radial-gradient(ellipse at 95% 100%,#52704e 0 15%,transparent 15.5%)}.eyebrow,.tag{display:inline-flex;align-items:center;gap:7px;font-size:.76rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.eyebrow{color:var(--orange)}h1{font-family:"DM Serif Display",serif;font-size:clamp(3.3rem,9vw,6.6rem);line-height:.82;margin:16px 0 12px;letter-spacing:-.045em}.h1-green{color:var(--pine)}.h1-orange{color:var(--orange)}.subtitle{position:relative;z-index:1;color:#4c664a;font-family:"DM Serif Display",serif;font-size:clamp(1.15rem,2vw,1.7rem);margin:0}.signpost{position:absolute;z-index:2;right:38px;top:38px;transform:rotate(-4deg);color:#47351f;font-size:.78rem;font-weight:900;line-height:1.8}.signpost span{display:block;background:#edc786;border:2px solid #9d703e;border-radius:5px;margin:3px;padding:2px 10px;box-shadow:2px 2px #83643a}.live{margin:26px 0 18px;padding:17px 20px;border-radius:16px;background:var(--pine);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:14px;box-shadow:0 7px 0 #173422}.live-info{display:flex;align-items:center;gap:12px}.pulse{width:11px;height:11px;border-radius:50%;background:#ffc446;box-shadow:0 0 0 0 #ffc44699;animation:pulse 1.8s infinite}@keyframes pulse{70%{box-shadow:0 0 0 11px transparent}100%{box-shadow:0 0 0 0 transparent}}.live strong{display:block;font-size:.95rem}.live small{color:#d6e3cc}.clock{font:500 .9rem "DM Mono";text-align:right}.grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.8fr);gap:22px}.panel{border:1px solid var(--line);border-radius:19px;background:#fffdf7;box-shadow:0 8px 24px #70532a10}.ranking{padding:24px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:16px}.section-head h2{font:1.85rem "DM Serif Display";margin:0}.section-head p{color:var(--muted);font-size:.83rem;margin:0}.rider{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:13px;padding:12px 6px;border-top:1px dashed #d9ceb5}.rider:first-of-type{border-top:0}.rank{font:900 1rem "DM Mono";color:#a1906d}.rider:first-of-type .rank{color:#ce8529}.name{font-weight:900}.details{font-size:.78rem;color:var(--muted);margin-top:1px}.points{text-align:right}.points b{font:900 1.25rem "DM Mono";color:var(--orange)}.points small{display:block;font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.side{display:grid;gap:22px;align-content:start}.arrival{padding:23px;background:linear-gradient(150deg,#f5ecd6,#fffdf5)}.arrival h2{font:1.65rem "DM Serif Display";margin:0 0 8px}.arrival p{color:var(--muted);font-size:.9rem;line-height:1.5;margin:0}.arrival .tent{font-size:3rem;margin:14px 0 3px}.rules{padding:23px}.rules h2{font:1.65rem "DM Serif Display";margin:0 0 3px}.rules>p{color:var(--muted);font-size:.8rem;margin:0 0 14px}.rule-group{margin-top:14px}.rule-title{display:flex;justify-content:space-between;border-bottom:1px solid #e7dcc4;padding-bottom:5px;font-weight:900;font-size:.87rem}.rule-title em{font-style:normal;color:var(--orange)}.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:7px}.step{background:#edf0e2;border-radius:6px;text-align:center;padding:5px 2px;font-size:.65rem;line-height:1.2}.step b{display:block;font:.82rem "DM Mono";color:var(--pine)}.simple-rules{margin:10px 0 0;padding:0;list-style:none;font-size:.78rem}.simple-rules li{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #dfd4bd}.simple-rules b{color:var(--orange)}.footnote{font-size:.74rem;color:var(--muted);margin:22px 4px 0;text-align:center}.final{display:none}.actuals{margin-top:22px;padding:20px 24px}.actuals h2{font:1.55rem "DM Serif Display";margin:0 0 9px}.actual-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.actual{background:#f1f3e7;border-radius:10px;padding:11px}.actual span{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}.actual b{font-size:.95rem}@media(max-width:780px){.wrap{padding:12px 12px 40px}.hero{padding:36px 25px 70px}.signpost{right:14px;top:16px;font-size:.62rem}.grid{grid-template-columns:1fr}.live{align-items:flex-start;flex-direction:column}.clock{text-align:left}.actual-grid{grid-template-columns:repeat(2,1fr)}.steps{gap:3px}.step{font-size:.56rem}.step b{font-size:.72rem}}@media(max-width:430px){h1{font-size:3.15rem}.rider{grid-template-columns:26px 1fr auto;gap:7px}.name{font-size:.88rem}.details{font-size:.69rem}.points b{font-size:1.04rem}.ranking,.rules,.arrival{padding:17px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="eyebrow">✦ Little explorer's trail log</div>
+      <div class="signpost"><span>PEQUENO</span><span>AVENTUREIRO</span><span>GRANDES HISTÓRIAS</span></div>
+      <h1><span class="h1-green">Benjamin</span><br><span class="h1-orange">Predictions</span></h1>
+      <p class="subtitle">Palpites para o Ben · quem vai conquistar o topo da montanha?</p>
+    </header>
+    <section class="live">
+      <div class="live-info"><i class="pulse"></i><div><strong>Live trail score</strong><small>Data e hora recalculadas automaticamente a cada minuto</small></div></div>
+      <div class="clock" id="clock">Loading Perth time…</div>
+    </section>
+    <section class="grid">
+      <article class="panel ranking">
+        <div class="section-head"><div><h2>Adventure Leaderboard</h2><p id="scoreNote">Ranking provisório · date + time only</p></div><span class="tag">🏕️ Live</span></div>
+        <div id="ranking"></div>
+      </article>
+      <aside class="side">
+        <section class="panel arrival">
+          <div class="tag">Arrival status</div>
+          <div class="tent">⛺</div>
+          <h2>Waiting for the big adventure</h2>
+          <p>Quando o Ben chegar, preencham os dados oficiais no arquivo e o dashboard calcula o <b>final score</b> automaticamente.</p>
+        </section>
+        <section class="panel rules">
+          <h2>Mapa de Pontuação</h2><p>Precisão é tudo na trilha. Total máximo: <b>100 pontos</b>.</p>
+          <div class="rule-group"><div class="rule-title"><span>Data</span><em>15 pts max</em></div><div class="steps"><div class="step">Exata<b>15</b></div><div class="step">≤1 dia<b>10</b></div><div class="step">≤2 dias<b>6</b></div><div class="step">≤3 dias<b>3</b></div><div class="step">&gt;3 dias<b>0</b></div></div></div>
+          <div class="rule-group"><div class="rule-title"><span>Hora</span><em>20 pts max</em></div><div class="steps"><div class="step">≤15 min<b>20</b></div><div class="step">≤30 min<b>15</b></div><div class="step">≤1 hora<b>10</b></div><div class="step">≤2 horas<b>5</b></div><div class="step">&gt;2 h<b>0</b></div></div></div>
+          <div class="rule-group"><div class="rule-title"><span>Peso</span><em>25 pts max</em></div><div class="steps"><div class="step">≤25 g<b>25</b></div><div class="step">≤100 g<b>20</b></div><div class="step">≤250 g<b>14</b></div><div class="step">≤500 g<b>7</b></div><div class="step">≤750 g<b>3</b></div></div></div>
+          <div class="rule-group"><div class="rule-title"><span>Comprimento</span><em>25 pts max</em></div><div class="steps"><div class="step">≤1 cm<b>25</b></div><div class="step">≤2 cm<b>20</b></div><div class="step">≤3 cm<b>14</b></div><div class="step">≤5 cm<b>7</b></div><div class="step">≤7 cm<b>3</b></div></div></div>
+          <ul class="simple-rules"><li><span>Cabelo · categoria correta</span><b>4 pts</b></li><li><span>Olhos · categoria correta</span><b>4 pts</b></li><li><span>Parece com pai ou mãe</span><b>2 pts</b></li></ul>
+        </section>
+      </aside>
+    </section>
+    <section class="panel actuals final" id="actuals"></section>
+    <p class="footnote">Scores use Australia/Perth time. Past and future guesses are both measured against the current moment until Benjamin arrives. ✦</p>
+  </main>
+<script>
+const year = 2026;
+const predictions = [
+  ["Diogo e Bianca","23/10","11:00",4327,33.7,"Castanho claro","Azul","Pai"],
+  ["Wes","23/10","17:17",3738,47.5,"Castanho","Mel","Mãe"],
+  ["Renan","25/10","10:32",3840,51,"Castanho","Castanho","Pai"],
+  ["Ísis*","26/10","00:32",3200,42,"Castanho","Mel","Mãe"],
+  ["Laudair","26/10","13:18",3920,38,"Castanho","Castanho","Pai"],
+  ["Adri","27/10","14:05",3350,36,"Castanho","Castanho com nuances verdes","Pai"],
+  ["Vini","29/10","07:27",3902,52,"Castanho claro","Castanho","Mãe"],
+  ["Nati","29/10","08:35",3750,53,"Castanho","Castanho","Mãe"],
+  ["Tauane e Maicon*","29/10","15:00",3800,52,"Claro","Verde claro","Pai"],
+  ["Carol","29/10","15:46",3700,44,"Castanho claro","Mel","Mãe"],
+  ["Su","02/11","13:02",3950,42,"Castanho","Castanho","Mãe"]
+].map(([name,date,time,weight,length,hair,eyes,resemblance])=>({name,date,time,weight,length,hair,eyes,resemblance}));
+
+// Once Benjamin arrives, replace null values below with the official details.
+// Example: { date:"2026-10-26", time:"13:18", weight:3920, length:51, hair:"Castanho", eyes:"Castanho", resemblance:"Pai" }
+const officialArrival = null;
+
+const perthParts = () => Object.fromEntries(new Intl.DateTimeFormat("en-CA",{timeZone:"Australia/Perth",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",weekday:"short",hourCycle:"h23"}).formatToParts(new Date()).filter(x=>x.type!=="literal").map(x=>[x.type,x.value]));
+const scoreByThresholds=(diff,thresholds)=>{for(const [limit,score] of thresholds)if(diff<=limit)return score;return 0};
+const predictionDate = date => {const [d,m]=date.split("/").map(Number);return new Date(Date.UTC(year,m-1,d))};
+function liveScores(){
+ const p=perthParts(), nowDate=new Date(Date.UTC(+p.year,+p.month-1,+p.day)), nowMins=+p.hour*60 + +p.minute;
+ return predictions.map(x=>{
+  const days=Math.abs((predictionDate(x.date)-nowDate)/86400000), [h,m]=x.time.split(":").map(Number), mins=Math.abs(h*60+m-nowMins);
+  const dateScore=scoreByThresholds(days,[[0,15],[1,10],[2,6],[3,3]]), timeScore=scoreByThresholds(mins,[[15,20],[30,15],[60,10],[120,5]]);
+  return {...x,dateScore,timeScore,total:dateScore+timeScore};
+ }).sort((a,b)=>b.total-a.total||a.name.localeCompare(b.name));
+}
+function fmtDate(date){const [d,m]=date.split("/");return d+"/"+m+"/"+year}
+function render(){
+ const p=perthParts(), nowText=new Intl.DateTimeFormat("pt-BR",{timeZone:"Australia/Perth",weekday:"long",day:"2-digit",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:false}).format(new Date());
+ document.getElementById("clock").textContent=nowText.replace(",", " ·");
+ const rows=liveScores();
+ document.getElementById("ranking").innerHTML=rows.map((x,i)=>'<div class="rider"><div class="rank">#'+(i+1)+'</div><div><div class="name">'+x.name+'</div><div class="details">'+x.date+' · '+x.time+' &nbsp;|&nbsp; Data: '+x.dateScore+' · Hora: '+x.timeScore+'</div></div><div class="points"><b>'+x.total+'</b><small>points</small></div></div>').join("");
+}
+render(); setInterval(render,60000);
+</script>
+</body>
+</html>
