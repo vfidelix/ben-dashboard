@@ -72,20 +72,41 @@ const officialArrival = null;
 const perthParts = () => Object.fromEntries(new Intl.DateTimeFormat("en-CA",{timeZone:"Australia/Perth",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",weekday:"short",hourCycle:"h23"}).formatToParts(new Date()).filter(x=>x.type!=="literal").map(x=>[x.type,x.value]));
 const scoreByThresholds=(diff,thresholds)=>{for(const [limit,score] of thresholds)if(diff<=limit)return score;return 0};
 const predictionDate = date => {const [d,m]=date.split("/").map(Number);return new Date(Date.UTC(year,m-1,d))};
-function liveScores(){
- const p=perthParts(), nowDate=new Date(Date.UTC(+p.year,+p.month-1,+p.day)), nowMins=+p.hour*60 + +p.minute;
+function scoreRows(reference){
  return predictions.map(x=>{
-  const days=Math.abs((predictionDate(x.date)-nowDate)/86400000), [h,m]=x.time.split(":").map(Number), mins=Math.abs(h*60+m-nowMins);
-  const dateScore=scoreByThresholds(days,[[0,15],[1,10],[2,6],[3,3]]), timeScore=scoreByThresholds(mins,[[15,20],[30,15],[60,10],[120,5]]);
-  return {...x,dateScore,timeScore,total:dateScore+timeScore};
+  const days=Math.abs((predictionDate(x.date)-reference.date)/86400000);
+  const [h,m]=x.time.split(":").map(Number), predictedMinutes=h*60+m;
+  const rawMinuteDifference=Math.abs(predictedMinutes-reference.minutes);
+  const minutes=Math.min(rawMinuteDifference,1440-rawMinuteDifference);
+  const dateScore=scoreByThresholds(days,[[0,15],[1,10],[2,6],[3,3]]);
+  const timeScore=scoreByThresholds(minutes,[[15,20],[30,15],[60,10],[120,5]]);
+  const weightScore=reference.weight==null?0:scoreByThresholds(Math.abs(x.weight-reference.weight),[[25,25],[100,20],[250,14],[500,7],[750,3]]);
+  const lengthScore=reference.length==null?0:scoreByThresholds(Math.abs(x.length-reference.length),[[1,25],[2,20],[3,14],[5,7],[7,3]]);
+  const same=(a,b)=>String(a).trim().toLocaleLowerCase("pt-BR")===String(b).trim().toLocaleLowerCase("pt-BR");
+  const hairScore=reference.hair? (same(x.hair,reference.hair)?4:0):0;
+  const eyesScore=reference.eyes? (same(x.eyes,reference.eyes)?4:0):0;
+  const resemblanceScore=reference.resemblance? (same(x.resemblance,reference.resemblance)?2:0):0;
+  return {...x,dateScore,timeScore,weightScore,lengthScore,hairScore,eyesScore,resemblanceScore,total:dateScore+timeScore+weightScore+lengthScore+hairScore+eyesScore+resemblanceScore};
  }).sort((a,b)=>b.total-a.total||a.name.localeCompare(b.name));
+}
+function liveScores(){
+ const p=perthParts();
+ return scoreRows({date:new Date(Date.UTC(+p.year,+p.month-1,+p.day)),minutes:+p.hour*60 + +p.minute});
+}
+function finalScores(){
+ const [h,m]=officialArrival.time.split(":").map(Number);
+ return scoreRows({...officialArrival,date:new Date(officialArrival.date+"T00:00:00Z"),minutes:h*60+m});
 }
 function fmtDate(date){const [d,m]=date.split("/");return d+"/"+m+"/"+year}
 function render(){
  const p=perthParts(), nowText=new Intl.DateTimeFormat("pt-BR",{timeZone:"Australia/Perth",weekday:"long",day:"2-digit",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:false}).format(new Date());
  document.getElementById("clock").textContent=nowText.replace(",", " ·");
- const rows=liveScores();
- document.getElementById("ranking").innerHTML=rows.map((x,i)=>'<div class="rider"><div class="rank">#'+(i+1)+'</div><div><div class="name">'+x.name+'</div><div class="details">'+x.date+' · '+x.time+' &nbsp;|&nbsp; Data: '+x.dateScore+' · Hora: '+x.timeScore+'</div></div><div class="points"><b>'+x.total+'</b><small>points</small></div></div>').join("");
+ const isFinal=Boolean(officialArrival), rows=isFinal?finalScores():liveScores();
+ document.getElementById("scoreNote").textContent=isFinal?"Final ranking · all 100 points in play":"Ranking provisório · date + time only";
+ document.querySelector(".live strong").textContent=isFinal?"Final trail score":"Live trail score";
+ document.querySelector(".live small").textContent=isFinal?"Benjamin has arrived — official scorecard locked":"Data e hora recalculadas automaticamente a cada minuto";
+ document.getElementById("ranking").innerHTML=rows.map((x,i)=>'<div class="rider"><div class="rank">#'+(i+1)+'</div><div><div class="name">'+x.name+'</div><div class="details">'+x.date+' · '+x.time+' &nbsp;|&nbsp; Data: '+x.dateScore+' · Hora: '+x.timeScore+(isFinal?' · Peso: '+x.weightScore+' · Comp.: '+x.lengthScore+' · Traits: '+(x.hairScore+x.eyesScore+x.resemblanceScore):'')+'</div></div><div class="points"><b>'+x.total+'</b><small>points</small></div></div>').join("");
+ if(isFinal){const a=officialArrival, box=document.getElementById("actuals");box.classList.remove("final");box.innerHTML='<h2>Benjamin\'s official arrival stats ✦</h2><div class="actual-grid"><div class="actual"><span>Data</span><b>'+a.date.split("-").reverse().join("/")+'</b></div><div class="actual"><span>Hora</span><b>'+a.time+'</b></div><div class="actual"><span>Peso</span><b>'+a.weight+' g</b></div><div class="actual"><span>Comprimento</span><b>'+a.length+' cm</b></div><div class="actual"><span>Cabelo</span><b>'+a.hair+'</b></div><div class="actual"><span>Olhos</span><b>'+a.eyes+'</b></div><div class="actual"><span>Parece com</span><b>'+a.resemblance+'</b></div></div>';}
 }
 render(); setInterval(render,60000);
 </script>
