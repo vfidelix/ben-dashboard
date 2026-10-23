@@ -25,28 +25,20 @@
       <div class="clock" id="clock">Loading Perth time…</div>
     </section>
     <section class="panel reference-panel">
-      <h2>Add your prediction / Adicione seu palpite</h2>
-      <p class="reference-intro">Envie um palpite para entrar no ranking desta sessão. Ele não é salvo, enviado ou compartilhado — ao atualizar a página, desaparece.</p>
-      <form id="predictionForm">
-        <div class="mode-choice">
-          <label><input id="useNow" type="checkbox" checked> Usar data e hora atuais de Perth no meu palpite</label>
-          <label><input id="enterDateTime" type="checkbox"> Escolher Data e Hora manualmente</label>
-        </div>
-        <div class="arrival-fields">
-          <div class="field"><label for="predictionName">Seu nome *</label><input id="predictionName" required maxlength="40" placeholder="Ex.: João"></div>
-          <div class="field"><label for="predictionDate">Data</label><input id="predictionDate" type="date" disabled></div>
-          <div class="field"><label for="predictionTime">Hora</label><input id="predictionTime" type="time" disabled></div>
-          <div class="field"><label for="predictionWeight">Peso (g) *</label><input id="predictionWeight" required type="number" min="0" step="1" placeholder="Ex.: 3920"></div>
-          <div class="field"><label for="predictionLength">Comprimento (cm) *</label><input id="predictionLength" required type="number" min="0" step="0.1" placeholder="Ex.: 51"></div>
-          <div class="field"><label for="predictionHair">Cabelo *</label><input id="predictionHair" required list="hairOptions" placeholder="Ex.: Castanho"></div>
-          <div class="field"><label for="predictionEyes">Olhos *</label><input id="predictionEyes" required list="eyeOptions" placeholder="Ex.: Castanho"></div>
-          <div class="field"><label for="predictionResemblance">Parece com *</label><select id="predictionResemblance" required><option value="">Escolha</option><option>Pai</option><option>Mãe</option></select></div>
-        </div>
-        <datalist id="hairOptions"><option>Castanho</option><option>Castanho claro</option><option>Claro</option></datalist>
-        <datalist id="eyeOptions"><option>Castanho</option><option>Mel</option><option>Azul</option><option>Verde claro</option></datalist>
-        <div class="form-actions"><button type="submit">Add to the adventure leaderboard ✦</button><span id="predictionHelp">Data e Hora atuais serão usadas automaticamente.</span></div>
-      </form>
-    </section>
+<h2>Score simulator / Simule o nascimento</h2>
+<p class="reference-intro">Preencha um cenário para ver quanto cada participante pontuaria. Os palpites originais continuam os mesmos. A simulação só dura até atualizar a página.</p>
+<form id="simulationForm">
+<div class="arrival-fields">
+<div class="field"><label for="simDate">Data simulada · vazio = hoje em Perth</label><input id="simDate" type="date"  ></div>
+<div class="field"><label for="simTime">Hora simulada · vazio = agora em Perth</label><input id="simTime" type="time"  ></div>
+<div class="field"><label for="simWeight">Peso simulado (g)</label><input id="simWeight" type="number" placeholder="Ex.: 3920" min="0" step="any"></div>
+<div class="field"><label for="simLength">Comprimento simulado (cm)</label><input id="simLength" type="number" placeholder="Ex.: 51" min="0" step="any"></div>
+<div class="field"><label for="simHair">Cabelo</label><select id="simHair"><option value="">Não simular</option><option>Castanho</option><option>Castanho claro</option><option>Claro</option></select></div>
+<div class="field"><label for="simEyes">Olhos</label><select id="simEyes"><option value="">Não simular</option><option>Castanho</option><option>Mel</option><option>Azul</option><option>Verde claro</option><option>Castanho com nuances verdes</option></select></div>
+<div class="field"><label for="simResemblance">Parece com</label><select id="simResemblance"><option value="">Não simular</option><option>Pai</option><option>Mãe</option></select></div>
+</div>
+<div class="form-actions"><button type="reset">Limpar simulação · Back to live</button><span id="simulationHelp" role="status" aria-live="polite"></span></div>
+</form></section>
     <section class="grid">
       <article class="panel ranking">
         <div class="section-head"><div><h2>Adventure Leaderboard</h2><p id="scoreNote">Ranking provisório · date + time only</p></div><span class="tag">🏕️ Live</span></div>
@@ -60,7 +52,7 @@
           <p>Quando o Ben chegar, preencham os dados oficiais no arquivo e o dashboard calcula o <b>final score</b> automaticamente.</p>
         </section>
         <section class="panel rules">
-          <h2>Mapa de Pontuação</h2><p>Precisão é tudo na trilha. Total máximo: <b>100 pontos</b>.</p>
+          <h2>Mapa de Pontuação</h2><p>Precisão é tudo na trilha. Total máximo: <b>95 pontos</b>.</p>
           <div class="rule-group"><div class="rule-title"><span>Data</span><em>15 pts max</em></div><div class="steps"><div class="step">Exata<b>15</b></div><div class="step">≤1 dia<b>10</b></div><div class="step">≤2 dias<b>6</b></div><div class="step">≤3 dias<b>3</b></div><div class="step">&gt;3 dias<b>0</b></div></div></div>
           <div class="rule-group"><div class="rule-title"><span>Hora</span><em>20 pts max</em></div><div class="steps"><div class="step">≤15 min<b>20</b></div><div class="step">≤30 min<b>15</b></div><div class="step">≤1 hora<b>10</b></div><div class="step">≤2 horas<b>5</b></div><div class="step">&gt;2 h<b>0</b></div></div></div>
           <div class="rule-group"><div class="rule-title"><span>Peso</span><em>25 pts max</em></div><div class="steps"><div class="step">≤25 g<b>25</b></div><div class="step">≤100 g<b>20</b></div><div class="step">≤250 g<b>14</b></div><div class="step">≤500 g<b>7</b></div><div class="step">≤750 g<b>3</b></div></div></div>
@@ -88,30 +80,16 @@ const predictions = [
   ["Su","02/11","13:02",3950,42,"Castanho","Castanho","Mãe"]
 ].map(([name,date,time,weight,length,hair,eyes,resemblance])=>({name,date,time,weight,length,hair,eyes,resemblance}));
 
-// Once Benjamin arrives, replace null values below with the official details.
-// Example: { date:"2026-10-26", time:"13:18", weight:3920, length:51, hair:"Castanho", eyes:"Castanho", resemblance:"Pai" }
-const officialArrival = null;
-
-function perthNow(){
- const p=perthParts();
- return {date:String(p.year)+"-"+String(p.month).padStart(2,"0")+"-"+String(p.day).padStart(2,"0"),time:String(p.hour).padStart(2,"0")+":"+String(p.minute).padStart(2,"0")};
-}
-function syncPredictionDateTime(){
- const choose=document.getElementById("enterDateTime").checked;
- document.getElementById("useNow").checked=!choose;
- ["predictionDate","predictionTime"].forEach(id=>document.getElementById(id).disabled=!choose);
- document.getElementById("predictionHelp").textContent=choose?"Manual mode: use the date/time you enter; leave either blank to use Perth now for that value.":"Live default: your prediction uses Perth's current date and time.";
-}
-function setupPredictionForm(){
- document.getElementById("useNow").addEventListener("change",()=>{if(document.getElementById("useNow").checked)document.getElementById("enterDateTime").checked=false;syncPredictionDateTime()});
- document.getElementById("enterDateTime").addEventListener("change",()=>{if(document.getElementById("enterDateTime").checked)document.getElementById("useNow").checked=false;syncPredictionDateTime()});
- document.getElementById("predictionForm").addEventListener("submit",event=>{
-  event.preventDefault();
-  const now=perthNow(), dateInput=document.getElementById("predictionDate").value, timeInput=document.getElementById("predictionTime").value;
-  predictions.push({name:document.getElementById("predictionName").value.trim(),date:dateInput?dateInput.split("-").reverse().map((part,index)=>index===0?part:part).join("/").replace(/^(\d{2})\/(\d{2})\/(\d{4})$/,"$1/$2"):now.date.slice(8)+"/"+now.date.slice(5,7),time:timeInput||now.time,weight:Number(document.getElementById("predictionWeight").value),length:Number(document.getElementById("predictionLength").value),hair:document.getElementById("predictionHair").value.trim(),eyes:document.getElementById("predictionEyes").value.trim(),resemblance:document.getElementById("predictionResemblance").value});
-  event.target.reset();document.getElementById("useNow").checked=true;syncPredictionDateTime();render();
- });
- syncPredictionDateTime();
+const simulationIds=["simDate","simTime","simWeight","simLength","simHair","simEyes","simResemblance"];
+function simulationReference(){
+ const p=perthParts(), value=id=>document.getElementById(id).value;
+ const date=value("simDate"), time=value("simTime");
+ return {date:date?new Date(date+"T00:00:00Z"):new Date(Date.UTC(+p.year,+p.month-1,+p.day)),
+ minutes:time?Number(time.slice(0,2))*60+Number(time.slice(3,5)):+p.hour*60 + +p.minute,
+ weight:value("simWeight")===""?null:Number(value("simWeight")),
+ length:value("simLength")===""?null:Number(value("simLength")),
+ hair:value("simHair"),eyes:value("simEyes"),resemblance:value("simResemblance"),
+ simulated:simulationIds.some(id=>value(id)!==""),dateManual:Boolean(date),timeManual:Boolean(time)};
 }
 const perthParts = () => Object.fromEntries(new Intl.DateTimeFormat("en-CA",{timeZone:"Australia/Perth",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",weekday:"short",hourCycle:"h23"}).formatToParts(new Date()).filter(x=>x.type!=="literal").map(x=>[x.type,x.value]));
 const scoreByThresholds=(diff,thresholds)=>{for(const [limit,score] of thresholds)if(diff<=limit)return score;return 0};
@@ -133,25 +111,24 @@ function scoreRows(reference){
   return {...x,dateScore,timeScore,weightScore,lengthScore,hairScore,eyesScore,resemblanceScore,total:dateScore+timeScore+weightScore+lengthScore+hairScore+eyesScore+resemblanceScore};
  }).sort((a,b)=>b.total-a.total||a.name.localeCompare(b.name));
 }
-function liveScores(){
- const p=perthParts();
- return scoreRows({date:new Date(Date.UTC(+p.year,+p.month-1,+p.day)),minutes:+p.hour*60 + +p.minute});
-}
-function finalScores(){
- const [h,m]=officialArrival.time.split(":").map(Number);
- return scoreRows({...officialArrival,date:new Date(officialArrival.date+"T00:00:00Z"),minutes:h*60+m});
-}
-function fmtDate(date){const [d,m]=date.split("/");return d+"/"+m+"/"+year}
 function render(){
  const nowText=new Intl.DateTimeFormat("pt-BR",{timeZone:"Australia/Perth",weekday:"long",day:"2-digit",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:false}).format(new Date());
  document.getElementById("clock").textContent=nowText.replace(",", " ·");
  document.getElementById("scoreNote").textContent="Ranking provisório · live date + time";
  document.querySelector(".live strong").textContent="Live trail score";
  document.querySelector(".live small").textContent="Data e hora recalculadas automaticamente a cada minuto";
- const rows=liveScores();
- document.getElementById("ranking").innerHTML=rows.map((x,i)=>'<div class="rider"><div class="rank">#'+(i+1)+'</div><div><div class="name">'+x.name+'</div><div class="details">'+x.date+' · '+x.time+' &nbsp;|&nbsp; Data: '+x.dateScore+' · Hora: '+x.timeScore+'<span class="prediction-line"><b>Palpite:</b> '+x.weight+' g · '+x.length+' cm · cabelo '+x.hair+' · olhos '+x.eyes+' · parece com '+x.resemblance+'</span></div></div><div class="points"><b>'+x.total+'</b><small>points</small></div></div>').join("");
+ const ref=simulationReference(), rows=scoreRows(ref);
+ document.getElementById("scoreNote").textContent=ref.simulated?"Simulação ativa · ranking de todos os palpites":"Ranking provisório · live date + time";
+ document.querySelector(".live strong").textContent=ref.simulated?"Simulation trail score":"Live trail score";
+ document.getElementById("simulationHelp").textContent="Data: "+(ref.dateManual?"simulada":"hoje em Perth")+" · Hora: "+(ref.timeManual?"simulada":"agora em Perth")+" · Campos vazios de características não pontuam.";
+
+ document.getElementById("ranking").innerHTML=rows.map((x,i)=>'<div class="rider"><div class="rank">#'+(i+1)+'</div><div><div class="name">'+x.name+'</div><div class="details">'+x.date+' · '+x.time+' &nbsp;|&nbsp; Data: '+x.dateScore+' · Hora: '+x.timeScore+' · Peso: '+x.weightScore+' · Comp.: '+x.lengthScore+' · Cabelo: '+x.hairScore+' · Olhos: '+x.eyesScore+' · Parece com: '+x.resemblanceScore+'<span class="prediction-line"><b>Palpite:</b> '+x.weight+' g · '+x.length+' cm · cabelo '+x.hair+' · olhos '+x.eyes+' · parece com '+x.resemblance+'</span></div></div><div class="points"><b>'+x.total+'</b><small>points</small></div></div>').join("");
 }
-setupPredictionForm();render(); setInterval(render,60000);
+document.getElementById("simulationForm").addEventListener("input",render);
+document.getElementById("simulationForm").addEventListener("change",render);
+document.getElementById("simulationForm").addEventListener("submit",event=>event.preventDefault());
+document.getElementById("simulationForm").addEventListener("reset",()=>setTimeout(render,0));
+render(); setInterval(render,60000);
 </script>
 </body>
 </html>
