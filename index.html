@@ -24,22 +24,7 @@
       <div class="live-info"><i class="pulse"></i><div><strong>Live trail score</strong><small>Data e hora recalculadas automaticamente a cada minuto</small></div></div>
       <div class="clock" id="clock">Loading Perth time…</div>
     </section>
-    <section class="panel reference-panel">
-<h2>Score simulator / Simule o nascimento</h2>
-<p class="reference-intro">Preencha um cenário para ver quanto cada participante pontuaria. Os palpites originais continuam os mesmos. A simulação só dura até atualizar a página.</p>
-<form id="simulationForm">
-<div class="arrival-fields">
-<div class="field"><label for="simDate">Data simulada · vazio = hoje em Perth</label><input id="simDate" type="date"  ></div>
-<div class="field"><label for="simTime">Hora simulada · vazio = agora em Perth</label><input id="simTime" type="time"  ></div>
-<div class="field"><label for="simWeight">Peso simulado (g)</label><input id="simWeight" type="number" placeholder="Ex.: 3920" min="0" step="any"></div>
-<div class="field"><label for="simLength">Comprimento simulado (cm)</label><input id="simLength" type="number" placeholder="Ex.: 51" min="0" step="any"></div>
-<div class="field"><label for="simHair">Cabelo</label><select id="simHair"><option value="">Não simular</option><option>Castanho</option><option>Castanho claro</option><option>Claro</option></select></div>
-<div class="field"><label for="simEyes">Olhos</label><select id="simEyes"><option value="">Não simular</option><option>Castanho</option><option>Mel</option><option>Azul</option><option>Verde claro</option><option>Castanho com nuances verdes</option></select></div>
-<div class="field"><label for="simResemblance">Parece com</label><select id="simResemblance"><option value="">Não simular</option><option>Pai</option><option>Mãe</option></select></div>
-</div>
-<div class="form-actions"><button type="reset">Limpar simulação · Back to live</button><span id="simulationHelp" role="status" aria-live="polite"></span></div>
-</form></section>
-    <section class="grid">
+    <section class="panel reference-panel"><h2>Welcome, Ben! / O pequeno aventureiro chegou ✦</h2><p>29/10/2026 · 16:20 (Perth) · 3.891 g · 53 cm</p><p>Cabelo, olhos e com quem se parece: aguardando confirmação. Essas categorias ainda não pontuam.</p></section><section class="grid">
       <article class="panel ranking">
         <div class="section-head"><div><h2>Adventure Leaderboard</h2><p id="scoreNote">Ranking provisório · date + time only</p></div><span class="tag">🏕️ Live</span></div>
         <div id="ranking"></div>
@@ -48,8 +33,8 @@
         <section class="panel arrival">
           <div class="tag">Arrival status</div>
           <div class="tent">⛺</div>
-          <h2>Waiting for the big adventure</h2>
-          <p>Quando o Ben chegar, preencham os dados oficiais no arquivo e o dashboard calcula o <b>final score</b> automaticamente.</p>
+          <h2>The adventure begins!</h2>
+          <p>Ben nasceu! Data, hora, peso e comprimento confirmados. Aguardando cabelo, olhos e semelhança.</p>
         </section>
         <section class="panel rules">
           <h2>Mapa de Pontuação</h2><p>Precisão é tudo na trilha. Total máximo: <b>95 pontos</b>.</p>
@@ -62,7 +47,7 @@
       </aside>
     </section>
     <section class="panel actuals final" id="actuals"></section>
-    <p class="footnote">Scores use Australia/Perth time. Past and future guesses are both measured against the current moment until Benjamin arrives. ✦</p>
+    <p class="footnote">Nascimento confirmado em Perth: 29/10/2026 às 16:20. Características pendentes não pontuam. ✦</p>
   </main>
 <script>
 const year = 2026;
@@ -83,6 +68,9 @@ const predictions = [
 
 const simulationIds=["simDate","simTime","simWeight","simLength","simHair","simEyes","simResemblance"];
 function simulationReference(){
+ return {date:new Date("2026-10-29T00:00:00Z"),minutes:980,weight:3891,length:53,hair:null,eyes:null,resemblance:null,simulated:false,dateManual:true,timeManual:true};
+}
+function unusedSimulationReference(){
  const p=perthParts(), value=id=>document.getElementById(id).value;
  const date=value("simDate"), time=value("simTime");
  return {date:date?new Date(date+"T00:00:00Z"):new Date(Date.UTC(+p.year,+p.month-1,+p.day)),
@@ -114,22 +102,18 @@ function scoreRows(reference){
 }
 function render(){
  const nowText=new Intl.DateTimeFormat("pt-BR",{timeZone:"Australia/Perth",weekday:"long",day:"2-digit",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:false}).format(new Date());
- document.getElementById("clock").textContent=nowText.replace(",", " ·");
- document.getElementById("scoreNote").textContent="Ranking provisório · live date + time";
- document.querySelector(".live strong").textContent="Live trail score";
- document.querySelector(".live small").textContent="Data e hora recalculadas automaticamente a cada minuto";
+ document.getElementById("clock").textContent="Nascimento · 29/10/2026 às 16:20 · Perth";
+ document.getElementById("scoreNote").textContent="Nascimento confirmado · características pendentes";
+ document.querySelector(".live strong").textContent="Ben has arrived!";
+ document.querySelector(".live small").textContent="Pontuação baseada nos dados confirmados do nascimento";
  const ref=simulationReference(), rows=scoreRows(ref);
  document.getElementById("scoreNote").textContent=ref.simulated?"Simulação ativa · ranking de todos os palpites":"Ranking provisório · live date + time";
  document.querySelector(".live strong").textContent=ref.simulated?"Simulation trail score":"Live trail score";
- document.getElementById("simulationHelp").textContent="Data: "+(ref.dateManual?"simulada":"hoje em Perth")+" · Hora: "+(ref.timeManual?"simulada":"agora em Perth")+" · Campos vazios de características não pontuam.";
+ // document.getElementById("simulationHelp").textContent="Data: "+(ref.dateManual?"simulada":"hoje em Perth")+" · Hora: "+(ref.timeManual?"simulada":"agora em Perth")+" · Campos vazios de características não pontuam.";
 
  document.getElementById("ranking").innerHTML=rows.map((x,i)=>'<div class="rider"><div class="rank">#'+(i+1)+'</div><div><div class="name">'+x.name+'</div><div class="details">'+x.date+' · '+x.time+' &nbsp;|&nbsp; Data: '+x.dateScore+' · Hora: '+x.timeScore+' · Peso: '+x.weightScore+' · Comp.: '+x.lengthScore+' · Cabelo: '+x.hairScore+' · Olhos: '+x.eyesScore+' · Parece com: '+x.resemblanceScore+'<span class="prediction-line"><b>Palpite:</b> '+x.weight+' g · '+x.length+' cm · cabelo '+x.hair+' · olhos '+x.eyes+' · parece com '+x.resemblance+'</span></div></div><div class="points"><b>'+x.total+'</b><small>points</small></div></div>').join("");
 }
-document.getElementById("simulationForm").addEventListener("input",render);
-document.getElementById("simulationForm").addEventListener("change",render);
-document.getElementById("simulationForm").addEventListener("submit",event=>event.preventDefault());
-document.getElementById("simulationForm").addEventListener("reset",()=>setTimeout(render,0));
-render(); setInterval(render,60000);
+render();
 </script>
 </body>
 </html>
